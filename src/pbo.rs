@@ -123,7 +123,7 @@ impl PBO {
         })
     }
 
-    fn from_directory(directory: PathBuf, mut binarize: bool, exclude_patterns: &Vec<String>, includefolders: &Vec<PathBuf>) -> Result<PBO, Error> {
+    pub fn from_directory(directory: PathBuf, mut binarize: bool, exclude_patterns: &Vec<String>, includefolders: &Vec<PathBuf>) -> Result<PBO, Error> {
         let file_list = list_files(&directory)?;
         let mut files: LinkedHashMap<String, Cursor<Box<[u8]>>> = LinkedHashMap::new();
         let mut header_extensions: HashMap<String,String> = HashMap::new();
@@ -191,7 +191,7 @@ impl PBO {
         })
     }
 
-    fn write<O: Write>(&self, output: &mut O) -> Result<(), Error> {
+    pub fn write<O: Write>(&self, output: &mut O) -> Result<(), Error> {
         let mut headers: Cursor<Vec<u8>> = Cursor::new(Vec::new());
 
         let ext_header = PBOHeader {
