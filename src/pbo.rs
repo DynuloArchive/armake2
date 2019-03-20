@@ -32,7 +32,7 @@ pub struct PBO {
 }
 
 impl PBOHeader {
-    fn read<I: Read>(input: &mut I) -> Result<PBOHeader, Error> {
+    pub fn read<I: Read>(input: &mut I) -> Result<PBOHeader, Error> {
         Ok(PBOHeader {
             filename: input.read_cstring()?,
             packing_method: input.read_u32::<LittleEndian>()?,
@@ -43,7 +43,7 @@ impl PBOHeader {
         })
     }
 
-    fn write<O: Write>(&self, output: &mut O) -> Result<(), Error> {
+    pub fn write<O: Write>(&self, output: &mut O) -> Result<(), Error> {
         output.write_cstring(&self.filename)?;
         output.write_u32::<LittleEndian>(self.packing_method)?;
         output.write_u32::<LittleEndian>(self.original_size)?;
