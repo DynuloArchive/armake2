@@ -27,7 +27,7 @@ pub struct PBOHeader {
 pub struct PBO {
     pub files: LinkedHashMap<String, Cursor<Box<[u8]>>>,
     pub header_extensions: HashMap<String, String>,
-    headers: Vec<PBOHeader>,
+    pub headers: Vec<PBOHeader>,
     pub checksum: Option<Vec<u8>>
 }
 
