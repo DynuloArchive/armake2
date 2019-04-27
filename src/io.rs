@@ -64,7 +64,7 @@ impl<T: Read> ReadExt for T {
 
         }
 
-        Ok(String::from_utf8(bytes).unwrap())
+        Ok(String::from_utf8_lossy(&bytes).to_string())
     }
 
     fn read_compressed_int(&mut self) -> io::Result<u32> {
